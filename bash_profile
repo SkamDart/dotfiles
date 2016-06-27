@@ -1,8 +1,10 @@
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 export PATH=/usr/local/bin:$PATH
+export PATH=$PATH:/usr/local/mysql/bin
 export PS1="\u \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
 
 # Location change shortcuts
 alias repos='cd ~/dev/repos/'
@@ -13,14 +15,23 @@ alias gil='git pull --all'
 alias gif='git fetch --all'
 alias gip='git push'
 alias newb='git push -u origin'
+alias gc='git clone '
+alias prune="git branch | grep -v "master" | xargs git branch -D"
+alias gco='git checkout'
+alias gal='git add --all'
 
-# bash access
+# bash prof access
 alias srcbp='source ~/.bash_profile'
 alias sublbp='subl ~/.bash_profile'
-alias p415='cd ~/dev/repos/project415x.github.io/'
 
-# build shortcuts
-alias js='jekyll serve'
+# startup shortcuts
+# alias start_mysql='sudo launchctl load -F /usr/local/Cellar/mysql/5.7.12/homebrew.mxcl.mysql.plist'
+# alias kill_mysql='sudo launchctl unload -F /usr/local/Cellar/mysql/5.7.12/homebrew.mxcl.mysql.plist'
+# alias start_mongo='sudo launchctl load -F /usr/local/Cellar/mongodb/3.2.6/homebrew.mxcl.mongodb.plist'
+# alias kill_mongo='sudo launchctl unload -F /usr/local/Cellar/mongodb/3.2.6/homebrew.mxcl.mongodb.plist'
+
+# npm shortcuts
+alias npr='npm run test'
 
 # Show Current Git Branch
 parse_git_branch() {
@@ -48,7 +59,7 @@ parse_git_branch() {
 #       http://www.macosxhints.com/article.php?story=20060816123853639
 #   ------------------------------------------------------------
     alias ttop="top -R -F -s 10 -o rsize"
-
+    alias running='ps aux | grep '
 #   my_ps: List processes owned by my user:
 #   ------------------------------------------------------------
     my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,start,time,bsdtime,command ; }
@@ -86,3 +97,6 @@ alias showBlocked='sudo ipfw list'                  # showBlocked:  All ipfw rul
 #   -------------------------------------------------------------------
     alias cleanupDS="find . -type f -name '*.DS_Store' -ls -delete"
 
+
+export NVM_DIR="/Users/cadart/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
